@@ -30,7 +30,7 @@ class BargesController extends Controller
 
     public function list_del($id)
     {
-        $list = WeightList::where('id', $id)->firstOrFail();
+        $list = BargesList::where('id', $id)->firstOrFail();
 
         if($list->delete()) {
             $message = setFlashMessage('success', 'delete', 'list');
@@ -44,23 +44,33 @@ class BargesController extends Controller
     public function list_save(Request $request)
     {
         $this->validate($request, [
-            'no_reg' => 'required',
-            'gross' => 'required',
-            'tare' => 'required',
-            'net' => 'required'
+            'no_sublot' => 'required',
+            'incr_no' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'trucks_number' => 'required',
+            'gatm' => 'required',
+            'size' => 'required',
+            'seal_number' => 'required',
+            'remark' => 'required'
         ]);
 
-        $list = new WeightList();
-        $list->id_weight = $request->get('id_weight');
-        $list->no_reg = $request->get('no_reg');
-        $list->gross = $request->get('gross');
-        $list->tare = $request->get('tare');
-        $list->net = $request->get('net');
+        $list = new BargesList();
+        $list->id_barges = $request->get('id_barges');
+        $list->no_sublot = $request->get('no_sublot');
+        $list->incr_no = $request->get('incr_no');
+        $list->date = $request->get('date');
+        $list->time = $request->get('time');
+        $list->trucks_number = $request->get('trucks_number');
+        $list->gatm = $request->get('gatm');
+        $list->size = $request->get('size');
+        $list->seal_number = $request->get('seal_number');
+        $list->remark = $request->get('remark');
 
         if($list->save()) {
-            $message = setFlashMessage('success', 'insert', 'weight list');
+            $message = setFlashMessage('success', 'insert', 'barges list');
         } else {
-            $message = setFlashMessage('error', 'insert', 'weight list');
+            $message = setFlashMessage('error', 'insert', 'barges list');
         }
 
         return redirect()->back()->with('message', $message);
@@ -69,22 +79,33 @@ class BargesController extends Controller
     public function list_update(Request $request, $id)
     {
         $this->validate($request, [
-            'no_reg' => 'required',
-            'gross' => 'required',
-            'tare' => 'required',
-            'net' => 'required'
+            'no_sublot' => 'required',
+            'incr_no' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'trucks_number' => 'required',
+            'gatm' => 'required',
+            'size' => 'required',
+            'seal_number' => 'required',
+            'remark' => 'required'
         ]);
 
-        $list = WeightList::where('id', $id)->firstOrFail();
-        $list->no_reg = $request->get('no_reg');
-        $list->gross = $request->get('gross');
-        $list->tare = $request->get('tare');
-        $list->net = $request->get('net');
+        $list = BargesList::where('id', $id)->firstOrFail();
+        $list->id_barges = $request->get('id_barges');
+        $list->no_sublot = $request->get('no_sublot');
+        $list->incr_no = $request->get('incr_no');
+        $list->date = $request->get('date');
+        $list->time = $request->get('time');
+        $list->trucks_number = $request->get('trucks_number');
+        $list->gatm = $request->get('gatm');
+        $list->size = $request->get('size');
+        $list->seal_number = $request->get('seal_number');
+        $list->remark = $request->get('remark');
 
         if($list->update()) {
-            $message = setFlashMessage('success', 'update', 'Weight List');
+            $message = setFlashMessage('success', 'update', 'Barges List');
         } else {
-            $message = setFlashMessage('error', 'update', 'Weight List');
+            $message = setFlashMessage('error', 'update', 'Barges List');
         }
 
         return redirect()->back()->with('message', $message);
