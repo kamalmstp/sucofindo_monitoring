@@ -50,7 +50,7 @@ Route::middleware('role:' . User::ADMINISTRATOR)
             Route::post('weight/list/{id}', [WeightController::class, 'list_save'])->name('weight.list');
             Route::put('weight/list/{id}', [WeightController::class, 'list_update'])->name('weight.list');
             Route::delete('weight/list_del/{id}', [WeightController::class, 'list_del'])->name('weight.list_del');
-            Route::post('weight/cetak', [WeightController::class, 'cetak'])->name('weight.cetak');
+            Route::get('weight-cetak/{id}', [WeightController::class, 'cetak']);
 
             Route::get('barges/list/{id}', [BargesController::class, 'list'])->name('barges.list');
             Route::post('barges/list/{id}', [BargesController::class, 'list_save'])->name('barges.list');

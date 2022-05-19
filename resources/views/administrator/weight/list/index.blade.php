@@ -40,10 +40,79 @@
 @section('content')
     <!-- Page Content -->
     <div class="content">
-        <h2 class="content-heading">
-            Data Weight List
-        </h2>
+        <!-- <h2 class="content-heading">
+            
+        </h2> -->
         <!-- Dynamic Table with Export Buttons -->
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <div class="block-title">
+                    <a href="{{route('weight.index')}}" class="btn btn-sm btn-secondary">
+                        <i class="fa fa-backward"> </i>
+                        <span> Kembali</span>
+                    </a>
+                </div>
+                <div class="block-options">
+                    <a href="/administrator/master/weight-cetak/{{ $weight->id }}" target="_blank" class="btn btn-sm btn-info">
+                        <i class="fa fa-print"> </i>
+                        <span> Cetak</span>
+                    </a>
+                </div>
+            </div>
+            <div class="block-content">
+                <h2 class="text-center">WEIGHT INFO</h2>
+                <p>
+                <table border="0" width="100%">
+					<tbody><tr>
+						<td width="20%">VESSEL</td>
+						<td> : </td>
+						<td>{{ $weight->vess }} </td>
+					</tr>
+					<tr>
+						<td>COMMODITY</td>
+						<td>:    </td>
+						<td>{{ $weight->comm }} </td>
+					</tr>
+					<tr>
+						<td>QUANTITY</td>
+						<td>:    </td>
+						<td>{{ $weight->quan }} </td>
+					</tr>
+					<tr>
+						<td>SHIPPERS/CLIENTS</td>
+						<td>:    </td>
+						<td>{{ $weight->ship }} </td>
+					</tr>
+					<tr>
+						<td>BUYER/CONSIGNEE</td>
+						<td>:    </td>
+						<td>{{ $weight->buyer }} </td>
+					</tr>
+					<tr>
+						<td>PLACE OF WIEGHING</td>
+						<td>:    </td>
+						<td>{{ $weight->place }}</td>
+					</tr>
+					<tr>
+						<td>DATE OF WIEGHING</td>
+						<td>:    </td>
+						<td>{{ $weight->date }}</td>
+					</tr>
+					<tr>
+						<td>TIME</td>
+						<td>:    </td>
+						<td>{{ $weight->time }} - {{ $weight->until }}</td>
+					</tr>
+					<tr>
+						<td>SHORE TANK NO.</td>
+						<td>:    </td>
+						<td>{{ $weight->shore }}</td>
+					</tr>
+					
+					</tbody></table>
+                </p>
+            </div>
+        </div>
         <div class="block block-rounded">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
@@ -51,23 +120,98 @@
                     Data Weight List
                 </h3>
                 <div class="block-options">
-                    <a href="#" class="btn btn-sm btn-primary">
+                    <button type="button" class="btn btn-sm btn-primary" onclick="addWeight()">
                         <i class="fa fa-plus"></i>
                         <span>Tambah Data</span>
-                    </a>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tambah Data -->
+            <div class="overflow-hidden" style="padding-left: 1.25rem;padding-right: 1.25rem;margin-bottom: 0;padding-top: 1.25rem;">
+                <div id="dm-add-server" class="block block-rounded bg-body-dark animated fadeIn @if($errors->has('no_sublot') || $errors->has('incr_no')) @else d-none @endif">
+                    <div class="block-header bg-white-25">
+                        <h3 class="block-title">Tambah Data</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option">
+                                <i class="si si-question"></i>
+                            </button>
+                            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content block-content-full">
+                        <form action="#" method="POST">
+                            @csrf
+                            @method('POST')
+                            <div class="form-group row gutters-tiny mb-0 items-push">
+                                <div class="col-md-2">
+                                    <input type="hidden" name="id_weight" value="{{ $weight->id }}">
+                                    <input type="text" class="form-control" name="no_reg" value="{{ old('no_reg') }}" placeholder="No. Register" autocomplete="off">
+
+                                    @error('no_reg')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" name="gross" placeholder="Gross" value="{{ old('gross') }}">
+
+                                    @error('gross')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" name="tare" placeholder="Tare" value="{{ old('tare') }}">
+
+                                    @error('tare')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" name="net" placeholder="Net" value="{{ old('net') }}">
+
+                                    @error('net')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        <i class="fa fa-save mr-1"></i>
+                                        <span>Simpan</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/tables_datatables.js -->
                 <table id="weight" class="table table-bordered table-striped responsive display" cellspacing="0" width="100%">
-                    <thead>
+                    <thead class="text-center">
                     <tr>
                         <th>
                             #
                         </th>
+                        <th>Truck's Registered No</th>
+                        <th>Weight Of Truck Plus Cargo in KG (Gross)</th>
+                        <th>Weight Of Empty Truck in KG (Tare)</th>
+                        <th>Weight Of Cargo in KG (Net)</th>
+                        <th>Aksi</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-center">
                         @php $i=1;
                         @endphp
                         @foreach ($weightlist as $row)
@@ -75,7 +219,18 @@
                             <td>
                                 {{ $i++ }}
                             </td>
-                            
+                            <td>{{$row->no_reg}}</td>
+                            <td>{{$row->gross}}</td>
+                            <td>{{$row->tare}}</td>
+                            <td>{{$row->net}}</td>
+                            <td>
+                                <div class='btn-group'>
+                                    <button type='button' class='btn btn-danger btn-sm'
+                                    onclick="confirmDelete('administrator/master/weight/list_del', '{{ $row->id }}')">
+                                        <i class='fa fa-fw fa-trash'></i>
+                                    </button>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

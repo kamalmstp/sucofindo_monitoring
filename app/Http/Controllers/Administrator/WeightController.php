@@ -7,6 +7,7 @@ use App\Models\Weight;
 use App\Models\WeightList;
 use Illuminate\Http\Request;
 use PDF;
+use Dompdf\Options;
 
 class WeightController extends Controller
 {
@@ -96,9 +97,17 @@ class WeightController extends Controller
         $weight = Weight::where('id', $id)->firstOrFail();
         $weightlist = WeightList::where('id_weight', $id)->get();
 
-        $class = 'text-left';
-        $pdf = PDF::loadView('layouts.cetak', compact('weight', 'weightlist'));
-        return $pdf->setPaper('a4', 'potrait')->stream('CPO-Weight-List-'.$weight->id.'.pdf');
+        $data = [
+            'weight' => $weight,
+            'weightlist' => $weightlist,
+            'judul' => "WEIGHT",
+        ];
+
+        PDF::setOptions(['defaultFont' => 'Arial']);
+          
+        $pdf = PDF::loadView('administrator.weight.list.cetak', $data);
+        // return $pdf->download('itsolutionstuff.pdf');
+        return $pdf->setPaper('a4', 'potrait')->stream('Weight List '.$id.'.pdf');
     }
 
     /**
