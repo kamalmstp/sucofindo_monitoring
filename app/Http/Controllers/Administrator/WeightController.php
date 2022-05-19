@@ -106,8 +106,17 @@ class WeightController extends Controller
         PDF::setOptions(['defaultFont' => 'Arial']);
           
         $pdf = PDF::loadView('administrator.weight.list.cetak', $data);
-        // return $pdf->download('itsolutionstuff.pdf');
         return $pdf->setPaper('a4', 'potrait')->stream('Weight List '.$id.'.pdf');
+
+        // $count = 0;
+        // foreach ($weightlist as $item){
+        //     if($count == 10){
+
+        //     }else{
+
+        //     }
+        //     $count++;
+        // }
     }
 
     /**
