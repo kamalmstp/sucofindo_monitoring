@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Thesis Management System'),
+    'name' => env('APP_NAME', 'Sistem Monitoring Sucofindo'),
 
     /*
     |--------------------------------------------------------------------------

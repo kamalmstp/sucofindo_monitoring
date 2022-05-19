@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Weight;
 use App\Models\WeightList;
 use Illuminate\Http\Request;
+use PDF;
 
 class WeightController extends Controller
 {
@@ -88,6 +89,16 @@ class WeightController extends Controller
         }
 
         return redirect()->back()->with('message', $message);
+    }
+
+    public function cetak($id)
+    {
+        $weight = Weight::where('id', $id)->firstOrFail();
+        $weightlist = WeightList::where('id_weight', $id)->get();
+
+        $class = 'text-left';
+        $pdf = PDF::loadView('layouts.cetak', compact('weight', 'weightlist'));
+        return $pdf->setPaper('a4', 'potrait')->stream('CPO-Weight-List-'.$weight->id.'.pdf');
     }
 
     /**
