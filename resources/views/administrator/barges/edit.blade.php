@@ -35,7 +35,7 @@
                                 <div class="col-sm-7 offset-sm-4">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-save mr-1"></i>
-                                        <span>Simpan</span>
+                                        <span>Update</span>
                                     </button>
                                     <x-button-link extend-class="float-right" type="secondary"
                                                    link="{{ route('barges.index') }}" icon="chevron-left"

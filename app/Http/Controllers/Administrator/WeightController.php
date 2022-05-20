@@ -100,7 +100,7 @@ class WeightController extends Controller
         $data = [
             'weight' => $weight,
             'weightlist' => $weightlist,
-            'judul' => "WEIGHT",
+            'judul' => "WEIGHT - LIST",
         ];
 
         PDF::setOptions(['defaultFont' => 'Arial']);

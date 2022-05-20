@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Barges;
 use App\Models\BargesList;
 use Illuminate\Http\Request;
+use PDF;
 
 class BargesController extends Controller
 {
@@ -109,6 +110,33 @@ class BargesController extends Controller
         }
 
         return redirect()->back()->with('message', $message);
+    }
+
+    public function cetak($id)
+    {
+        $barges = Barges::where('id', $id)->firstOrFail();
+        $bargeslist = BargesList::where('id_barges', $id)->get();
+
+        $data = [
+            'barges' => $barges,
+            'bargeslist' => $bargeslist,
+            'judul' => "BARGES/TRUCKS INCREMENT RECORD",
+        ];
+
+        PDF::setOptions(['defaultFont' => 'Arial']);
+          
+        $pdf = PDF::loadView('administrator.barges.list.cetak', $data);
+        return $pdf->setPaper('a4', 'potrait')->stream('Barges List '.$id.'.pdf');
+
+        // $count = 0;
+        // foreach ($weightlist as $item){
+        //     if($count == 10){
+
+        //     }else{
+
+        //     }
+        //     $count++;
+        // }
     }
 
     /**

@@ -23,6 +23,7 @@ use App\Http\Controllers\Administrator\StudentController;
 use App\Http\Controllers\Administrator\StudyProgramController;
 use App\Http\Controllers\Administrator\SubmissionThesisRequirementController;
 use App\Models\Pengiriman;
+use App\Http\Controllers\TestController;
 
 Route::middleware('role:' . User::ADMINISTRATOR)
     ->prefix('administrator')
@@ -56,7 +57,9 @@ Route::middleware('role:' . User::ADMINISTRATOR)
             Route::post('barges/list/{id}', [BargesController::class, 'list_save'])->name('barges.list');
             Route::put('barges/list/{id}', [BargesController::class, 'list_update'])->name('barges.list');
             Route::delete('barges/list_del/{id}', [BargesController::class, 'list_del'])->name('barges.list_del');
-            Route::post('barges/cetak', [BargesController::class, 'cetak'])->name('barges.cetak');
+            Route::get('barges-cetak/{id}', [BargesController::class, 'cetak']);
+
+            Route::get('test-cetak', [TestController::class, 'cetak']);
 
             Route::get('students/import', [ImportController::class, 'getImportStudent'])->name('students.import');
             Route::post('students/import', [ImportController::class, 'processImportStudent'])->name('students.import');

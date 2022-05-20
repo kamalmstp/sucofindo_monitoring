@@ -45,13 +45,21 @@
         </h2> -->
         <!-- Dynamic Table with Export Buttons -->
         <div class="block block-rounded">
-            <div class="block-content">
-                <div class="block-options">
-                    <a href="{{route('barges.index')}}" class="btn btn-sm btn-success">
+            <div class="block-header block-header-default">
+                <div class="block-title">
+                    <a href="{{route('barges.index')}}" class="btn btn-sm btn-secondary">
                         <i class="fa fa-backward"></i>
                         <span> Kembali</span>
                     </a>
                 </div>
+                <div class="block-options">
+                    <a href="/administrator/master/barges-cetak/{{ $barges->id }}" target="_blank" class="btn btn-sm btn-info">
+                        <i class="fa fa-print"> </i>
+                        <span> Cetak</span>
+                    </a>
+                </div>
+            </div>
+            <div class="block-content">
                 <h2 class="text-center">BARGES INFO</h2>
                 <p>
                 <table border="0" width="100%">

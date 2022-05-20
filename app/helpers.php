@@ -55,16 +55,15 @@ if (!function_exists('showName')) {
     }
 }
 
-//             'STUDENT' => 'Mahasiswa',
-//             'STUDY_PROGRAM_LEADER' => 'Kaprodi',
-//             'LECTURER' => 'Dosen',
-
 if (!function_exists('userLevel')) {
     function userLevel($level = null)
     {
         $userLevels = [
             'ADMINISTRATOR' => 'Admin',
-            'DRIVER' => 'Driver'
+            'KEPALA' => 'Kepala',
+            'DRIVER' => 'Driver',
+            'SAMPLER' => 'Sampler'
+
         ];
 
         if ($level !== null && key_exists($level, $userLevels)) {
@@ -80,10 +79,9 @@ if (!function_exists('userBadge')) {
     {
         $badgeColor = [
             'ADMINISTRATOR' => 'success',
-            'STUDENT' => 'info',
-            'STUDY_PROGRAM_LEADER' => 'warning',
-            'LECTURER' => 'primary',
-            'DRIVER' => 'warning'
+            'KEPALA' => 'info',
+            'DRIVER' => 'warning',
+            'SAMPLER' => 'primary'
         ];
 
         if ($level !== null && key_exists($level, $badgeColor)) {
