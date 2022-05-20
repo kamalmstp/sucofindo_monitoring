@@ -45,6 +45,17 @@
             </li>
             <!-- END MENU INPUT -->
 
+            <!-- MENU REPORT -->
+            <li class="nav-main-heading">REPORT</li>
+            <li class="nav-main-item">
+                <a class="nav-main-link{{ request()->routeIs('report.weight') ? ' active' : '' }}"
+                   href="{{ route('report.weight') }}">
+                    <i class="nav-main-link-icon fa fa-print"></i>
+                    <span class="nav-main-link-name">REPORT CPO</span>
+                </a>
+            </li>
+            <!-- END MENU REPORT -->
+
             <!-- PENGATURAN -->
             <li class="nav-main-heading">PENGATURAN</li>
             <li class="nav-main-item">
