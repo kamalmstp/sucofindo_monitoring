@@ -76,7 +76,7 @@
 					<tr>
 						<td>QUANTITY</td>
 						<td>:    </td>
-						<td>{{ $weight->quan }} </td>
+						<td>{{$quantity}}</td>
 					</tr>
 					<tr>
 						<td>SHIPPERS/CLIENTS</td>
@@ -98,11 +98,11 @@
 						<td>:    </td>
 						<td>{{ $weight->date }}</td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td>TIME</td>
 						<td>:    </td>
 						<td>{{ $weight->time }} - {{ $weight->until }}</td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td>SHORE TANK NO.</td>
 						<td>:    </td>
@@ -120,10 +120,14 @@
                     Data Weight List
                 </h3>
                 <div class="block-options">
-                    <button type="button" class="btn btn-sm btn-primary" onclick="addWeight()">
+                    <!-- <button type="button" class="btn btn-sm btn-primary" onclick="addWeight()">
                         <i class="fa fa-plus"></i>
                         <span>Tambah Data</span>
-                    </button>
+                    </button> -->
+                    <a href="{{ route('barges.create') }}" class="btn btn-sm btn-primary">
+                        <i class="fa fa-plus"></i>
+                        <span>Tambah Data</span>
+                    </a>
                 </div>
             </div>
 
@@ -146,7 +150,7 @@
                             @csrf
                             @method('POST')
                             <div class="form-group row gutters-tiny mb-0 items-push">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <input type="hidden" name="id_weight" value="{{ $weight->id }}">
                                     <input type="text" class="form-control" name="no_reg" value="{{ old('no_reg') }}" placeholder="No. Register" autocomplete="off">
 
@@ -156,7 +160,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <input type="number" class="form-control" name="gross" placeholder="Gross" value="{{ old('gross') }}">
 
                                     @error('gross')
@@ -165,7 +169,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <input type="number" class="form-control" name="tare" placeholder="Tare" value="{{ old('tare') }}">
 
                                     @error('tare')
@@ -175,7 +179,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-2">
+                                <!-- <div class="col-md-2">
                                     <input type="number" class="form-control" name="net" placeholder="Net" value="{{ old('net') }}">
 
                                     @error('net')
@@ -183,7 +187,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div> -->
                                 
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-primary btn-block">

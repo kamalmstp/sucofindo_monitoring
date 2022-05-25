@@ -120,10 +120,12 @@
                     Data Barge List
                 </h3>
                 <div class="block-options">
-                    <button type="button" class="btn btn-sm btn-primary" onclick="addBarges()">
+                    <!-- <button type="button" class="btn btn-sm btn-primary" onclick="addBarges()">
                         <i class="fa fa-plus"></i>
                         <span>Tambah Data</span>
-                    </button>
+                    </button> -->
+                    <button type="button" class="btn btn-alt-primary push" data-bs-toggle="modal" data-bs-target="#add_barges_list"><i class="fa fa-plus"></i> Tambah Data</button>
+                    
                 </div>
             </div>
 
@@ -295,4 +297,22 @@
         <!-- END Dynamic Table with Export Buttons -->
     </div>
     <!-- END Page Content -->
+
+    <div class="modal" id="add_barges_list" tabindex="-1" role="dialog" aria-labelledby="add_barges_list" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pb-1">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection

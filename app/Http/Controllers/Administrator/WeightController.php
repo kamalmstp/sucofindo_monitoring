@@ -25,9 +25,10 @@ class WeightController extends Controller
 
     public function list($id)
     {
+        $quantity = WeightList::where('id_weight', $id)->sum('net');
         $weight = Weight::where('id', $id)->firstOrFail();
         $weightlist = WeightList::where('id_weight', $id)->get();
-        return viewAdministrator('weight.list.index', compact('weight','weightlist'));
+        return viewAdministrator('weight.list.index', compact('weight','weightlist', 'quantity'));
     }
 
     public function list_del($id)
@@ -48,8 +49,7 @@ class WeightController extends Controller
         $this->validate($request, [
             'no_reg' => 'required',
             'gross' => 'required',
-            'tare' => 'required',
-            'net' => 'required'
+            'tare' => 'required'
         ]);
 
         $list = new WeightList();
@@ -57,7 +57,7 @@ class WeightController extends Controller
         $list->no_reg = $request->get('no_reg');
         $list->gross = $request->get('gross');
         $list->tare = $request->get('tare');
-        $list->net = $request->get('net');
+        $list->net = ($request->get('gross') - $request->get('tare'));
 
         if($list->save()) {
             $message = setFlashMessage('success', 'insert', 'weight list');
@@ -73,15 +73,14 @@ class WeightController extends Controller
         $this->validate($request, [
             'no_reg' => 'required',
             'gross' => 'required',
-            'tare' => 'required',
-            'net' => 'required'
+            'tare' => 'required'
         ]);
 
         $list = WeightList::where('id', $id)->firstOrFail();
         $list->no_reg = $request->get('no_reg');
         $list->gross = $request->get('gross');
         $list->tare = $request->get('tare');
-        $list->net = $request->get('net');
+        $list->net = ($request->get('gross') - $request->get('tare'));
 
         if($list->update()) {
             $message = setFlashMessage('success', 'update', 'Weight List');
@@ -107,16 +106,6 @@ class WeightController extends Controller
           
         $pdf = PDF::loadView('administrator.weight.list.cetak', $data);
         return $pdf->setPaper('a4', 'potrait')->stream('Weight List '.$id.'.pdf');
-
-        // $count = 0;
-        // foreach ($weightlist as $item){
-        //     if($count == 10){
-
-        //     }else{
-
-        //     }
-        //     $count++;
-        // }
     }
 
     /**

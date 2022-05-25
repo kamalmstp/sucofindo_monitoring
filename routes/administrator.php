@@ -55,7 +55,9 @@ Route::middleware('role:' . User::ADMINISTRATOR)
             Route::get('weight-cetak/{id}', [WeightController::class, 'cetak']);
 
             Route::get('barges/list/{id}', [BargesController::class, 'list'])->name('barges.list');
+            // Route::get('barges/list/create/{id}', [BargesController::class, 'list_create'])->name('barges.list_create');
             Route::post('barges/list/{id}', [BargesController::class, 'list_save'])->name('barges.list');
+            Route::get('barges/list/{id}/edit', [BargesController::class, 'list_edit'])->name('barges.list_edit');
             Route::put('barges/list/{id}', [BargesController::class, 'list_update'])->name('barges.list');
             Route::delete('barges/list_del/{id}', [BargesController::class, 'list_del'])->name('barges.list_del');
             Route::get('barges-cetak/{id}', [BargesController::class, 'cetak']);

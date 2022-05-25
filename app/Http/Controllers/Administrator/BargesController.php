@@ -42,6 +42,13 @@ class BargesController extends Controller
         return redirect()->back()->with('message', $message);
     }
 
+    public function list_create($id)
+    {
+        $barges = Barges::where('id', $id)->firstOrFail();
+
+        return viewAdministrator('barges.list.create', compact('barges'));
+    }
+
     public function list_save(Request $request)
     {
         $this->validate($request, [

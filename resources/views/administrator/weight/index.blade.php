@@ -67,12 +67,12 @@
                         </th>
                         <th>Vessel</th>
                         <th>Commodity</th>
-                        <th>Quantity</th>
+                        <!-- <th>Quantity</th> -->
                         <th>Shippers/Clients</th>
                         <th>Buyer/Consigne</th>
                         <th>Place of Wieghing</th>
-                        <th>Date Of Wieghing</th>
-                        <th>Time</th>
+                        <!-- <th>Date Of Wieghing</th>
+                        <th>Time</th> -->
                         <th>Shore</th>
                         <th>Aksi</th>
                     </tr>
@@ -91,12 +91,12 @@
                                 </a>
                             </td>
                             <td>{{ $row->comm }}</td>
-                            <td>{{ $row->quan }}</td>
+                            <!-- <td>{{ $row->quan }}</td> -->
                             <td>{{ $row->ship }}</td>
                             <td>{{ $row->buyer }}</td>
                             <td>{{ $row->place }}</td>
-                            <td>{{ $row->date }}</td>
-                            <td>{{ $row->time }} - {{ $row->until }}</td>
+                            <!-- <td>{{ $row->date }}</td>
+                            <td>{{ $row->time }} - {{ $row->until }}</td> -->
                             <td>{{ $row->shore }}</td>
                             <td>
                                 <div class='btn-group'>
