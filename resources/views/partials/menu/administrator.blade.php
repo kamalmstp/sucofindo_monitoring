@@ -27,6 +27,15 @@
             </li>
             <!-- END MONITORING SAMPEL -->
 
+            <li class="nav-main-heading">BRIEFING PROSEDUR</li>
+            <li class="nav-main-item">
+                <a class="nav-main-link{{ request()->routeIs('briefing.*') ? ' active' : '' }}"
+                   href="{{ route('briefing.index') }}">
+                    <i class="nav-main-link-icon fa fa-list-alt"></i>
+                    <span class="nav-main-link-name">Briefing Prosedur</span>
+                </a>
+            </li>
+
             <!-- MENU INPUT -->
             <li class="nav-main-heading">MENU INPUT</li>
             <li class="nav-main-item">

@@ -25,6 +25,7 @@ use App\Http\Controllers\Administrator\SubmissionThesisRequirementController;
 use App\Models\Pengiriman;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Administrator\ReportController;
+use App\Http\Controllers\Administrator\BriefingController;
 
 Route::middleware('role:' . User::ADMINISTRATOR)
     ->prefix('administrator')
@@ -47,6 +48,11 @@ Route::middleware('role:' . User::ADMINISTRATOR)
             Route::resource('bahanbakar', BahanBakarController::class);
             Route::resource('weight', WeightController::class);
             Route::resource('barges', BargesController::class);
+            Route::resource('briefing', BriefingController::class);
+
+            Route::post('briefing/add_peg', [BriefingController::class, 'store_pegawai'])->name('briefing.store_pegawai');
+            Route::delete('briefing/detail/{id}', [BriefingController::class, 'del_pegawai'])->name('briefing.del_pegawai');
+            Route::get('briefing/cetak/{id}', [BriefingController::class, 'cetak']);
             
             Route::get('weight/list/{id}', [WeightController::class, 'list'])->name('weight.list');
             Route::post('weight/list/{id}', [WeightController::class, 'list_save'])->name('weight.list');
